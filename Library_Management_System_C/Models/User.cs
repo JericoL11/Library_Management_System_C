@@ -25,7 +25,7 @@ namespace Library_Management_System_C.Models
 
         [DataType(DataType.Password)]
         [Compare("Password")]
-        public string? confirm_Password { get; set; }
+        public string? confirm_Password  { get; set; } 
 
         [DataType(DataType.Date)]
         public DateTime BirthDate { get; set; }

@@ -6,6 +6,8 @@
 @{
     Layout = "_LayoutLogin.cshtml";
 }
+
+
 <body id="Login_Wallpaper">
 <!----------------------- Main Container -------------------------->
 
@@ -52,7 +54,7 @@
                          <button class="btn btn-lg btn-light w-100 fs-6"><img src="~/images/google.png" style="width:20px" class="me-2"><small>Sign In with Google</small></button>
                               </div>-->
                     <div class="row">
-                        <small class="footer_text">Don't have account? <a href="#">Sign Up</a></small>
+                        <small class="footer_text">Don't have account? <a class="footer_text_a" asp-controller="Register" asp-action="Index">Signup Now!</a></small>
                     </div>
                 </div>
 

@@ -38,8 +38,8 @@ namespace Library_Management_System_C.Controllers
             }
             else
             {
-                //assigning of property
-                Fullname = $"{loginuser.FirstName} {loginuser.LastName}";
+               //Set Session
+                HttpContext.Session.SetString("Fullname",  $"{loginuser.FirstName} {loginuser.LastName}");
 
                 return RedirectToAction("Index", "Users"/*,new { loginuser.id }*/);
            

@@ -81,6 +81,18 @@ table {
     background-size: cover;
 }
 
+.footer_text_a{
+  
+   transition:0.1s;
+    text-decoration-line:none;
+}
+
+.footer_text_a:hover{
+    font-weight:bold;  
+    /*text-decoration-line:underline;*/
+}
+
+
 
 
 body {
@@ -125,7 +137,7 @@ html {
     margin-left: -220px;
     overflow-y: auto;
     overflow-x: hidden;
-    background: #1a1a1a;
+    background: #ab3f00;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
@@ -251,8 +263,8 @@ html {
 .sidebar-brand {
     height: 65px;
     position: relative;
-    background: #212531;
-    background: linear-gradient(to right bottom, #2f3441 50%, #212531 50%);
+    background: #ab3f00;
+    /*  background: linear-gradient(to right bottom, #2f3441 50%, #212531 50%);*/
     padding-top: 1em;
 }
 

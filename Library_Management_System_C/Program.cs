@@ -5,6 +5,18 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<Library_Management_System_CContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("Library_Management_System_CContext") ?? throw new InvalidOperationException("Connection string 'Library_Management_System_CContext' not found.")));
 
+//Session setup
+builder.Services.AddDistributedMemoryCache();
+
+//add CONTEXT (4)
+builder.Services.AddHttpContextAccessor();
+
+builder.Services.AddSession(options=> {
+    options.Cookie.Name = ".GayoCanalesLibrary.Session";
+    options.IdleTimeout = TimeSpan.FromSeconds(10);
+    options.Cookie.IsEssential = true;
+
+});
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
@@ -25,6 +37,9 @@ app.UseRouting();
 
 app.UseAuthorization();
 
+
+//use session
+app.UseSession();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Login}/{action=Index}/{id?}");

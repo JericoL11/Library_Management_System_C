@@ -1,6 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
+    @inject IHttpContextAccessor HttpConvextAccessor
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Library_Management_System_C</title>
@@ -18,9 +19,9 @@
             <ul class="nav sidebar-nav">
                 <div class="sidebar-header">
                     <div class="sidebar-brand">
-                        
-                     <a style="text-decoration:none; color:white;">Hi, user!</a><br />
-               @*          <small style="color:white; font-size:14px;">User Account</small> *@
+                        <!--Displaying Session-->
+                        <a style="text-decoration:none; color:white;">@HttpConvextAccessor.HttpContext.Session.GetString("Fullname")</a><br />
+                        <small style="color:white; font-size:14px;">User Account</small> 
                     </div>
                 </div>
                 <li class="mt-4"><a href="#home">Home</a></li>

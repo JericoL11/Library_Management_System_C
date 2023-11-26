@@ -26,13 +26,7 @@ namespace Library_Management_System_C.Controllers
         public async Task<IActionResult> Index(/*int id*/)
         { 
 
-                     //get the tempdata from loginController
-                     //   ID.Add(id);
-/* TO EDIT
-          var data = _context.User.Where(q => q.id == id).FirstOrDefault();
-
-            ViewBag.fullname = $"{data.FirstName} {data.LastName}";*/
-
+                 
             return _context.User != null ? 
                           View(await _context.User.ToListAsync()) :
                           Problem("Entity set 'Library_Management_System_CContext.User'  is null.");
