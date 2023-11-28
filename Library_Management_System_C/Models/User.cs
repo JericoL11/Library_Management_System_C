@@ -24,6 +24,7 @@ namespace Library_Management_System_C.Models
         [Required(ErrorMessage = "Password is required")]
 
         [DataType(DataType.Password)]
+        [Display(Name ="Confirm Password")]
         [Compare("Password")]
         public string? confirm_Password  { get; set; } 
 

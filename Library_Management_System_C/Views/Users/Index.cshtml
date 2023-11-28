@@ -6,10 +6,11 @@
     Layout = "_LayoutCrud.cshtml";
 }
 
-<h1>Index</h1>
+<h1>Registered Accounts</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <button class="btn btn-primary px-2 py-0"> <a class="text-white" style="text-decoration:none;"<a asp-action="Create" style="text-decoration:none" class=" text-white">Create New</a></button>
+
 </p>
 <table class="table">
     <thead>
@@ -63,9 +64,9 @@
                 @Html.DisplayFor(modelItem => item.BirthDate)
             </td>
             <td>
-                <button class="btn btn-primary px-2 py-0"> <a class="text-white" style="text-decoration:none" asp-action="Edit" asp-route-id="@item.id">Edit</a></button>
-                <button class="btn btn-primary px-2 py-0"> <a class="text-white" style="text-decoration:none" asp-action="Details" asp-route-id="@item.id">Details</a></button>
-                <button class="btn btn-primary px-2 py-0"> <a class="text-white" style="text-decoration:none" asp-action="Delete" asp-route-id="@item.id">Delete</a></button>
+                     <button class="btn btn-primary px-2 py-0"> <a class="text-white" style="text-decoration:none" asp-action="Edit" asp-route-id="@item.id">Edit</a></button> |
+                    <button class="btn btn-info     px-2 py-0"> <a class="text-white" style="text-decoration:none" asp-action="Details" asp-route-id="@item.id">Details</a></button> |
+                    <button class="btn btn-danger px-2 py-0"> <a class="text-white" style="text-decoration:none" asp-action="Delete" asp-route-id="@item.id">Delete</a></button>
 
               @*    <a asp-action="Edit" asp-route-id="@item.id">Edit |
                 <a asp-action="Details" asp-route-id="@item.id">Details</a> |

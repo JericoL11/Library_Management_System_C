@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 //model class declaration
 using Library_Management_System_C.Models;
+using Library_Management_System_C.Services;
+
 namespace Library_Management_System_C.Controllers
 {
     public class LoginController : Controller
@@ -27,6 +29,14 @@ namespace Library_Management_System_C.Controllers
         [HttpPost]
         public IActionResult LoginAct([Bind("Username, Password")] User user)
         {
+
+            //Hashing Passowrd 
+            string HashPassword = HashingService.HashData(user.Password);
+            //Get the original  password
+            user.Password = HashPassword;   
+
+
+            user.confirm_Password = HashPassword;
             //Link to Database 
             User loginuser = _context.User.Where(u => u.Username == user.Username && u.Password ==user.Password).FirstOrDefault();
 
