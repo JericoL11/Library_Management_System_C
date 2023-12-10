@@ -1,0 +1,37 @@
+﻿@model Library_Management_System_C.Models.Details
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "_LayoutCrud.cshtml";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Details</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FK_books_id)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FK_books_id.author)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FK_record_id)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FK_record_id.record_id)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.return_date)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.return_date)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.details_id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

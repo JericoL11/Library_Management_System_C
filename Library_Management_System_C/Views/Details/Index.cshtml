@@ -1,0 +1,70 @@
+﻿@model IEnumerable<Library_Management_System_C.Models.Details>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_LayoutCrud.cshtml";
+}
+
+<h1>Details</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+    <a asp-controller="Borrowers" asp-action="Index">Borrwers</a>
+    <a asp-controller="Records" asp-action="Index">Records</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <p style="margin:0;"> Details ID</p>
+            </th>
+            <th>
+                <p style="margin:0;"> Borrower Name</p>
+            </th>
+            <th>
+                <p style="margin:0;"> Borrower ID</p>
+            </th>
+            <th>
+                <p style="margin:0;"> Book Name</p>
+            </th>
+            <th>
+                <p style="margin:0;"> Due Date</p>
+            </th>
+            <th>
+                <p style="margin:0;"> Return Date</p>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.details_id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FK_record_id.FK_borrower.borrower_fname)
+                @Html.Raw(' ')
+                @Html.DisplayFor(modelItem => item.FK_record_id.FK_borrower.borrower_lname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FK_record_id.FK_borrower.borrowerId)
+            </td>
+             <td>
+                @Html.DisplayFor(modelItem => item.FK_books_id.bookName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FK_record_id.due_date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.return_date)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.details_id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.details_id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.details_id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

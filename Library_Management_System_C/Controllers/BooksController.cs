@@ -65,17 +65,35 @@ namespace Library_Management_System_C.Controllers
         {
             var Context = await _context.Books.Include(a => a.book_category).ToListAsync();
 
-          
 
+            //check boooks
+            bool checkBooks = _context.Books.Any(b => b.bookName == books.bookName);
 
-            if (ModelState.IsValid)
+            if (checkBooks == true)
             {
-                _context.Add(books);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                ModelState.AddModelError("", "Book already exist");
+                ViewData["CategorList"] = new SelectList(_context.Category_Book, "categoryId", "categoryName");
+                return View();
             }
-            ViewData["categoryId"] = new SelectList(_context.Category_Book, "categoryId", "categoryId", books.categoryId);
-            return View(books);
+
+            else
+            {
+                if (ModelState.IsValid)
+                {
+                    _context.Add(books);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+                ViewData["categoryId"] = new SelectList(_context.Category_Book, "categoryId", "categoryId", books.categoryId);
+                return View(books);
+
+            }
+         
+
+            
+
+
+
         }
 
         // GET: Books/Edit/5

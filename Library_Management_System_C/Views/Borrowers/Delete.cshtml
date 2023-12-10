@@ -1,0 +1,58 @@
+﻿@model Library_Management_System_C.Models.Borrower
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "_LayoutCrud.cshtml";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Borrower</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.borrower_fname)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.borrower_fname)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.borrower_lname)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.borrower_lname)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.borrower_Course)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.borrower_Course)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.borrower_PhoneNumber)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.borrower_PhoneNumber)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.borrower_Email)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.borrower_Email)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.date_registered)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.date_registered)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="borrowerId" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

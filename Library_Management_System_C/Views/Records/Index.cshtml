@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Library_Management_System_C.Models.Records>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_LayoutCrud.cshtml";
+}
+
+<h1>Records</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+    <a asp-controller="Borrowers" asp-action="Index">Borrwers</a>
+    <a asp-controller="Details" asp-action="Index">Details</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <p style="margin:0;"> Record ID</p>
+            </th>
+            <th>
+                <p style="margin:0;"> Full Name</p>
+            </th>
+            <th>
+                <p style="margin:0;"> Borrower ID</p>
+            </th>
+      
+            <th>
+                <p style="margin:0;"> Due Date </p>
+            </th>
+       
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.record_id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FK_borrower.borrower_fname)
+                @Html.Raw(' ')
+                @Html.DisplayFor(modelItem => item.FK_borrower.borrower_lname)
+            </td>
+              <td>
+                @Html.DisplayFor(modelItem => item.borrowerId)
+            </td>
+        
+            <td>
+                @Html.DisplayFor(modelItem => item.due_date)
+            </td>
+      
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.record_id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.record_id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.record_id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

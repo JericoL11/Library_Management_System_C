@@ -7,110 +7,90 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Library_Management_System_C.Data;
 using Library_Management_System_C.Models;
-using Library_Management_System_C.Controllers;
-using Library_Management_System_C.Services;
 
 namespace Library_Management_System_C.Controllers
 {
-    public class UsersController : Controller
+    public class BorrowersController : Controller
     {
-   
         private readonly Library_Management_System_CContext _context;
 
-        public UsersController(Library_Management_System_CContext context)
+        public BorrowersController(Library_Management_System_CContext context)
         {
             _context = context;
         }
-     
 
-        // GET: Users
-        public async Task<IActionResult> Index(/*int id*/)
-        { 
-
-                 
-            return _context.User != null ? 
-                          View(await _context.User.ToListAsync()) :
-                          Problem("Entity set 'Library_Management_System_CContext.User'  is null.");
+        // GET: Borrowers
+        public async Task<IActionResult> Index()
+        {
+              return _context.Borrower != null ? 
+                          View(await _context.Borrower.ToListAsync()) :
+                          Problem("Entity set 'Library_Management_System_CContext.Borrower'  is null.");
         }
 
-        // GET: Users/Details/5
+        // GET: Borrowers/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-   
-
-            if (id == null || _context.User == null)
+            if (id == null || _context.Borrower == null)
             {
                 return NotFound();
             }
 
-            var user = await _context.User
-                .FirstOrDefaultAsync(m => m.id == id);
-            if (user == null)
+            var borrower = await _context.Borrower
+                .FirstOrDefaultAsync(m => m.borrowerId == id);
+            if (borrower == null)
             {
                 return NotFound();
             }
 
-            return View(user);
+            return View(borrower);
         }
 
-        // GET: Users/Create
+        // GET: Borrowers/Create
         public IActionResult Create()
         {
-         
             return View();
         }
 
-        // POST: Users/Create
+        // POST: Borrowers/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,FirstName,LastName,Username,Password,confirm_Password,BirthDate")] User user)
+        public async Task<IActionResult> Create([Bind("borrowerId,borrower_fname,borrower_lname,borrower_Course,borrower_PhoneNumber,borrower_Email,date_registered")] Borrower borrower)
         {
-            //Hashing Passowrd 
-            string HashPassword = HashingService.HashData(user.Password);
-            //Get the original  password
-            user.Password = HashPassword;
-            user.confirm_Password = HashPassword;
             if (ModelState.IsValid)
             {
-                _context.Add(user);
+                _context.Add(borrower);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(user);
+            return View(borrower);
         }
 
-        // GET: Users/Edit/5
+        // GET: Borrowers/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.User == null)
+            if (id == null || _context.Borrower == null)
             {
                 return NotFound();
             }
 
-            var user = await _context.User.FindAsync(id);
-            if (user == null)
+            var borrower = await _context.Borrower.FindAsync(id);
+            if (borrower == null)
             {
                 return NotFound();
             }
-            return View(user);
+            return View(borrower);
         }
 
-        // POST: Users/Edit/5
+        // POST: Borrowers/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("id,FirstName,LastName,Username,Password,confirm_Password,BirthDate")] User user)
+        public async Task<IActionResult> Edit(int id, [Bind("borrowerId,borrower_fname,borrower_lname,borrower_Course,borrower_PhoneNumber,borrower_Email,date_registered")] Borrower borrower)
         {
-            //Hashing Passowrd 
-            string HashPassword = HashingService.HashData(user.Password);
-            //Get the original  password
-            user.Password = HashPassword;
-            user.confirm_Password = HashPassword;
-
-            if (id != user.id)
+            if (id != borrower.borrowerId)
             {
                 return NotFound();
             }
@@ -119,12 +99,12 @@ namespace Library_Management_System_C.Controllers
             {
                 try
                 {
-                    _context.Update(user);
+                    _context.Update(borrower);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!UserExists(user.id))
+                    if (!BorrowerExists(borrower.borrowerId))
                     {
                         return NotFound();
                     }
@@ -135,49 +115,49 @@ namespace Library_Management_System_C.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(user);
+            return View(borrower);
         }
 
-        // GET: Users/Delete/5
+        // GET: Borrowers/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.User == null)
+            if (id == null || _context.Borrower == null)
             {
                 return NotFound();
             }
 
-            var user = await _context.User
-                .FirstOrDefaultAsync(m => m.id == id);
-            if (user == null)
+            var borrower = await _context.Borrower
+                .FirstOrDefaultAsync(m => m.borrowerId == id);
+            if (borrower == null)
             {
                 return NotFound();
             }
 
-            return View(user);
+            return View(borrower);
         }
 
-        // POST: Users/Delete/5
+        // POST: Borrowers/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.User == null)
+            if (_context.Borrower == null)
             {
-                return Problem("Entity set 'Library_Management_System_CContext.User'  is null.");
+                return Problem("Entity set 'Library_Management_System_CContext.Borrower'  is null.");
             }
-            var user = await _context.User.FindAsync(id);
-            if (user != null)
+            var borrower = await _context.Borrower.FindAsync(id);
+            if (borrower != null)
             {
-                _context.User.Remove(user);
+                _context.Borrower.Remove(borrower);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool UserExists(int id)
+        private bool BorrowerExists(int id)
         {
-          return (_context.User?.Any(e => e.id == id)).GetValueOrDefault();
+          return (_context.Borrower?.Any(e => e.borrowerId == id)).GetValueOrDefault();
         }
     }
 }

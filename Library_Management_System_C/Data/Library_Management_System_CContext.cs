@@ -18,5 +18,8 @@ namespace Library_Management_System_C.Data
 
         public DbSet<Library_Management_System_C.Models.Books> Books { get; set; } = default!;
         public DbSet<Library_Management_System_C.Models.Category_Book> Category_Book { get; set; } = default!;
+        public DbSet<Library_Management_System_C.Models.Borrower>? Borrower { get; set; } = default!;
+        public DbSet<Library_Management_System_C.Models.Records>? Records { get; set; } = default!;
+        public DbSet<Library_Management_System_C.Models.Details>? Details { get; set; }
     }
 }

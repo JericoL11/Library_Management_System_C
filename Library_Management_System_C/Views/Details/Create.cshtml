@@ -1,0 +1,42 @@
+﻿@model Library_Management_System_C.Models.Details
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "_LayoutCrud.cshtml";
+}
+
+<h1>Create</h1>
+
+<h4>Details</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="FK_books_id.bookId" class="control-label"></label>
+                <select asp-for="FK_books_id.bookId" class ="form-control" asp-items="ViewBag.books_id"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="FK_record_id.record_id" class="control-label"></label>
+                <select asp-for="FK_record_id.record_id" class="form-control" asp-items="ViewBag.record_id"></select>
+            </div>
+          @*   <div class="form-group">
+                <label asp-for="return_date" class="control-label"></label>
+                <input asp-for="return_date" class="form-control" />
+                <span asp-validation-for="return_date" class="text-danger"></span>
+            </div> *@
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Library_Management_System_C.Data;
 using Library_Management_System_C.Models;
+using static System.Reflection.Metadata.BlobBuilder;
 
 namespace Library_Management_System_C.Controllers
 {
@@ -58,14 +59,27 @@ namespace Library_Management_System_C.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("categoryId,categoryName")] Category_Book category_Book)
         {
-            if (ModelState.IsValid)
+
+            //check category
+            bool checkBooks = _context.Category_Book.Any(b => b.categoryName == category_Book.categoryName);
+
+            if (checkBooks == true)
             {
-                _context.Add(category_Book);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                ModelState.AddModelError("", "Category Name is already exist");
+                return View();
             }
-            return View(category_Book);
-        }
+
+            else
+            {
+                if (ModelState.IsValid)
+                {
+                    _context.Add(category_Book);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+                return View(category_Book);
+            }
+        }   
 
         // GET: Category_Book/Edit/5
         public async Task<IActionResult> Edit(int? id)

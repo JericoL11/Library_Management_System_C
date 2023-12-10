@@ -1,0 +1,67 @@
+﻿@model IEnumerable<Library_Management_System_C.Models.Borrower>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_LayoutCrud.cshtml";
+}
+
+<h1>Borrowers</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+    <a asp-controller="Records" asp-action="Index">Records</a>  
+    <a asp-controller="Details" asp-action="Index">Details</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+               <p style="margin:0;"> Borrower ID</p>
+            </th>
+            <th>
+                <p style="margin:0;"> Full Name </p>
+            </th>
+            <th>
+                <p style="margin:0;"> Course </p>
+            </th>
+            <th>
+                <p style="margin:0;"> Phone Number </p>
+            </th>
+            <th>
+                <p style="margin:0;"> Email </p>
+            </th>
+            <th>
+                <p style="margin:0;"> Date Registered </p>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.borrowerId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.borrower_fname)
+                @Html.Raw(' ')
+              @Html.DisplayFor(modelItem => item.borrower_lname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.borrower_PhoneNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.borrower_Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.date_registered)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.borrowerId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.borrowerId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.borrowerId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
