@@ -15,7 +15,9 @@
             @Html.DisplayNameFor(model => model.FK_borrower)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FK_borrower.borrower_Course)
+            @Html.DisplayFor(model => model.FK_borrower.borrower_fname)
+            @Html.Raw(' ')
+            @Html.DisplayFor(model => model.FK_borrower.borrower_lname)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.due_date)

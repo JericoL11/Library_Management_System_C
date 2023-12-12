@@ -8,20 +8,22 @@ namespace Library_Management_System_C.Models
         [Key]
         public int details_id { get; set; }
 
-       /* [Display(Name = "For Books")]
-        public int books_id { get; set; }*/
+       /* After execute comment this and change the select asp for name to fk
+        */ [Display(Name = "For Books")]
+        public int? books_id { get; set; }
 
         [ForeignKey("books_id")]
         public Books? FK_books_id { get; set; }
 
-/*
-        [Display(Name = "For Records")]
-        public int record_id { get; set; }*/
+        /*
+         After execute comment this and change the select asp for name to fk*/
+          [Display(Name = "For Records")]
+          public int? record_id { get; set; }
 
         [ForeignKey("record_id")]
         [Display(Name = "Record_Id")]
         public Records? FK_record_id { get; set; }
-
+            
 
         //hide this in create
         //this is used for edit

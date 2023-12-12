@@ -96,7 +96,19 @@ namespace Library_Management_System_C.Controllers
             {
                 return NotFound();
             }
-            ViewData["borrowerId"] = new SelectList(_context.Borrower, "borrowerId", "borrower_Course", records.borrowerId);
+
+            /*         // Fetching data from your database context with condition
+                     var data = _context.Borrower.Where( r => r.borrowerId == records.FK_borrower.borrowerId).Select(x => new {
+                         CombinedValue = x.borrowerId + " " + x.borrower_fname + " " + x.borrower_lname,
+                         Id = x.borrowerId // Assuming you have an Id property or some unique identifier
+                     }).ToList();
+
+                     // Creating a SelectList
+                     ViewData["RecordsList"] = new SelectList(data, "Id", "CombinedValue");*/
+
+
+
+            ViewData["borrowerId"] = new SelectList(_context.Borrower, "borrowerId", "borrowerId", records.borrowerId);
             ViewData["librarianId"] = new SelectList(_context.User, "id", "FirstName", records.librarianId);
             return View(records);
         }
